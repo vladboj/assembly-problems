@@ -18,3 +18,7 @@ To use the solutions provided in this repository:
 - Ensure you have an x86 architecture environment set up.
 - Compile the assembly code using an appropriate assembler.
 - Execute the compiled binaries, providing necessary inputs as required by the respective problems.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
