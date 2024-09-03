@@ -1,20 +1,37 @@
-## About ##
+# Requirement 1: #
+Given an input hexadecimal string, the task is to display the assembly instruction to be executed on the standard output.
 
-I solved these two x86 Assembly problems for learning purposes.
+For example, for the input A78801C00A7890EC04, the output on the standard output will be x 1 let x -14 div.
 
-## Instruction Interpreter ##
+# Requirement 2: #
+Given as input an instruction in the assembly language of the considered arithmetic processor, the task is to display on the standard output the evaluation of the instruction. For this requirement, there are no variables in the instruction; it is formed only by integers and operations.
 
-- Displaying Assembly Instructions: Given an input hexadecimal string, the program displays the corresponding assembly instruction to be executed on the standard output.
-- Evaluating Arithmetic Instructions: The program evaluates arithmetic instructions in the assembly language of the considered arithmetic processor. These instructions consist only of integers and arithmetic operations. The program performs the operations according to the given instructions and prints the result to the standard output.
-- Evaluating Instructions with Variables: This task involves evaluating instructions with variables introduced by "let". The program interprets these instructions, applies the defined variables, and evaluates the arithmetic expressions accordingly. It prints the final result to the standard output.
+For example, an instruction could be given like "2 10 mul 5 div 7 6 sub add." The result should follow the algorithm below:
 
-## Recursive Backtracking ##
+* Add 2 to the stack.
+* Add 10 to the stack.
+* Identify the multiplication operation (mul), apply the multiplication between 2 and 10, resulting in 20. Remove 2 and 10 from the stack, keeping only 20.
+* Add 5 to the stack.
+* Identify the division operation (div), which performs 20 div 5, resulting in 4. Remove 20 and 5 from the stack, keeping only 4.
+* Add 7 to the stack.
+* Add 6 to the stack.
+* Identify the subtraction operation (sub), which calculates the difference between 7 and 6, resulting in 1. Remove 7 and 6 from the stack, adding 1 to the stack. Note that at this point, the stack contains 4 at the bottom and 1 at the top because the subtraction is a binary operation and worked only with the arguments 7 and 6, not with the 4 that was already at the bottom of the stack.
+* Identify the addition operation (add), which calculates the sum between 1 and 4, resulting in 5. Remove 1 and 4 from the stack, adding 5.
+After traversing the entire sequence, the obtained result is now at the top of the stack. In this example, the result is 5.
 
-The Recursive Backtracking program generates the smallest lexicographically ordered permutation of a set of elements where each element appears exactly three times. The permutation satisfies the condition of having a minimum distance of 'm' elements between any two equal elements. The program reads input values for 'n', 'm', and '3 * n', then generates the permutation and outputs it to the standard output. If no valid permutation exists, it outputs -1.
+# Requirement 3: #
+Given an input instruction in the assembly language of the considered arithmetic processor, the task is to display the evaluation of the instruction on the standard output. Unlike requirement 2, this task involves the use of variables introduced by "let."
 
-## Usage ##
-To use the solutions provided in this repository:
+An example of input could be "x 1 let 2 x add y 3 let x y add mul." The evaluation proceeds as follows:
 
-- Ensure you have an x86 architecture environment set up
-- Compile the assembly code using an appropriate assembler
-- Execute the compiled binaries, providing necessary inputs as required by the respective problems
+* Add x and 1 to the stack; when "let" is encountered, it is understood that x = 1 throughout the arithmetic expression. Remove x and 1 from the stack.
+* Add 2 and 1 to the stack (since x is now 1).
+* When "add" is encountered, calculate the sum, resulting in 3. Remove 2 and 1 from the stack, keeping only 3.
+* Add y and 3 to the stack; when "let" is encountered, it is understood that y = 3 throughout the arithmetic expression. Remove y and 3 from the stack.
+* Add 1 and 3 to the stack (representing x and y).
+* Perform the addition; the result is 4. Remove 1 and 3 from the stack, adding 4.
+* Identify "mul"; the stack already contains 3 (from the third bullet point in the current explanation) and 4 (from the previous bullet point). Calculate the result, which is 12. Remove 3 and 4 from the stack and add 12.
+Since there are no more elements in the sequence, the final result is 12.
+Similar to requirement 2, it is guaranteed that all operations will be applied to unsigned integers.
+
+*The given information isn't enough to be able to solve the requirements. I posted them to give a general idea of the tasks.*
